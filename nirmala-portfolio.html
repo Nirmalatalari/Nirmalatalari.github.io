@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talari Nirmala — Web Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EEF1EE;
+    --panel: #E4E9E4;
+    --ink: #17221E;
+    --ink-soft: #4C5C55;
+    --amber: #C8862E;
+    --teal: #2E6F6E;
+    --line: #C7D0C6;
+    --white: #FAFBF9;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+
+  ::selection{ background: var(--amber); color: var(--white); }
+
+  .wrap{
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    max-width: 1180px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  /* ---- Sidebar ---- */
+  aside{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 56px 40px 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--line);
+  }
+
+  .id-block h1{
+    font-size: 2.1rem;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .id-block .role{
+    margin-top: 10px;
+    color: var(--teal);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .id-block .loc{
+    margin-top: 18px;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+  }
+
+  nav{ margin-top: 48px; }
+
+  nav a{
+    display: block;
+    text-decoration: none;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    padding: 7px 0;
+    border-left: 2px solid transparent;
+    padding-left: 14px;
+    transition: color .15s ease, border-color .15s ease;
+  }
+
+  nav a:hover, nav a.active{
+    color: var(--ink);
+    border-left-color: var(--amber);
+  }
+
+  .contact-block{ font-size: 0.78rem; color: var(--ink-soft); }
+
+  .contact-block a{
+    display: block;
+    text-decoration: none;
+    margin-bottom: 8px;
+    color: var(--ink-soft);
+  }
+  .contact-block a:hover{ color: var(--amber); }
+
+  .contact-block .cta{
+    display: inline-block;
+    margin-top: 6px;
+    padding: 10px 18px;
+    background: var(--ink);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+  }
+  .contact-block .cta:hover{ background: var(--teal); }
+
+  /* ---- Main ---- */
+  main{ padding: 56px 0 120px 56px; }
+
+  section{ margin-bottom: 96px; scroll-margin-top: 40px; }
+
+  .tag{
+    color: var(--teal);
+    font-size: 0.78rem;
+    margin-bottom: 14px;
+  }
+  .tag::before{ content: "// "; color: var(--amber); }
+
+  section h2{
+    font-size: 1.6rem;
+    margin-bottom: 28px;
+    max-width: 640px;
+  }
+
+  /* Hero */
+  #hero{ margin-bottom: 88px; }
+  #hero p.lede{
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-top: 6px;
+  }
+  #hero .type-line{
+    margin-top: 26px;
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 14px 18px;
+    display: inline-block;
+    min-height: 20px;
+  }
+  #hero .type-line .caret{
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--amber);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{ opacity: 0; } }
+
+  /* Experience */
+  .exp-row{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+  .exp-row:last-child{ border-bottom: 1px solid var(--line); }
+  .exp-date{ color: var(--ink-soft); font-size: 0.78rem; padding-top: 2px; }
+  .exp-role{ font-family: 'Fraunces', serif; font-size: 1.15rem; margin-bottom: 4px; }
+  .exp-org{ color: var(--teal); font-size: 0.82rem; margin-bottom: 14px; }
+  .exp-row ul{ padding-left: 18px; color: var(--ink-soft); font-size: 0.85rem; }
+  .exp-row li{ margin-bottom: 8px; }
+
+  /* Skills */
+  .skill-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 48px;
+  }
+  .skill-group h3{
+    font-size: 0.78rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+    text-transform: lowercase;
+  }
+  .skill-group h3::before{ content: "$ "; color: var(--amber); }
+  .pill-row{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill{
+    border: 1px solid var(--line);
+    background: var(--white);
+    padding: 6px 12px;
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+  }
+
+  /* Project */
+  .project-card{
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 32px;
+  }
+  .project-card h3{ font-family: 'Fraunces', serif; font-size: 1.3rem; margin-bottom: 12px; }
+  .project-card p{ color: var(--ink-soft); font-size: 0.88rem; max-width: 620px; margin-bottom: 18px; }
+  .stack-row{ display: flex; gap: 8px; flex-wrap: wrap; }
+  .stack-row span{
+    font-size: 0.72rem;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    padding: 4px 10px;
+  }
+
+  /* Education */
+  .edu-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+    gap: 20px;
+  }
+  .edu-row:last-child{ border-bottom: 1px solid var(--line); }
+  .edu-name{ font-family: 'Fraunces', serif; font-size: 1rem; }
+  .edu-org{ color: var(--ink-soft); font-size: 0.8rem; margin-top: 4px; }
+  .edu-meta{ text-align: right; font-size: 0.76rem; color: var(--ink-soft); white-space: nowrap; }
+
+  /* Certifications */
+  .cert-list{ display: flex; flex-direction: column; gap: 10px; }
+  .cert-list li{ list-style: none; font-size: 0.85rem; color: var(--ink-soft); padding-left: 18px; position: relative; }
+  .cert-list li::before{ content: "▸"; position: absolute; left: 0; color: var(--amber); }
+
+  footer{
+    padding: 40px 0 40px 56px;
+    color: var(--ink-soft);
+    font-size: 0.75rem;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 860px){
+    .wrap{ grid-template-columns: 1fr; }
+    aside{
+      position: relative;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 32px 24px;
+    }
+    main{ padding: 48px 24px 80px; }
+    footer{ padding: 32px 24px; }
+    .skill-grid{ grid-template-columns: 1fr; }
+    .exp-row{ grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .type-line .caret{ animation: none; }
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <aside>
+    <div>
+      <div class="id-block">
+        <h1>Talari<br>Nirmala</h1>
+        <div class="role">Web Developer</div>
+        <div class="loc">Narasaraopet, Andhra Pradesh, India</div>
+      </div>
+      <nav id="nav">
+        <a href="#hero">hero</a>
+        <a href="#experience">experience</a>
+        <a href="#skills">skills</a>
+        <a href="#project">project</a>
+        <a href="#education">education</a>
+        <a href="#certifications">certifications</a>
+      </nav>
+    </div>
+    <div class="contact-block">
+      <a href="mailto:talarinirmala4@gmail.com">talarinirmala4@gmail.com</a>
+      <a href="tel:8919615129">8919615129</a>
+      <a href="https://github.com/Nirmalatalari" target="_blank" rel="noopener">github.com/Nirmalatalari</a>
+      <a class="cta" href="mailto:talarinirmala4@gmail.com">Get in touch</a>
+    </div>
+  </aside>
+
+  <main>
+    <section id="hero">
+      <div class="tag">about</div>
+      <h2 class="display" style="font-size:1.9rem; max-width:600px;">Building responsive, optimized web experiences — with an eye now turning toward computer vision.</h2>
+      <p class="lede">Detail-oriented developer with a foundation in HTML, CSS, and responsive design, and hands-on experience troubleshooting and optimizing data-driven platforms. Recently applied that same optimization mindset to a computer vision pipeline built in Python and OpenCV.</p>
+      <div class="type-line"><span id="typeTarget"></span><span class="caret"></span></div>
+    </section>
+
+    <section id="experience">
+      <div class="tag">experience</div>
+      <h2>Work History</h2>
+      <div class="exp-row">
+        <div class="exp-date">Sep 2025 — Nov 2025</div>
+        <div>
+          <div class="exp-role">AI Intern</div>
+          <div class="exp-org">Infosys Springboard Program</div>
+          <ul>
+            <li>Developed and implemented a computer vision pipeline using Python and OpenCV for high-performance, real-time monitoring.</li>
+            <li>Optimized system architecture to improve video-based data flow, strengthening troubleshooting skills across complex technical pipelines.</li>
+            <li>Tested and refined detection models for cross-platform stability, mirroring the demands of responsive, cross-device design.</li>
+            <li>Produced project documentation and technical reports to support knowledge transfer and CMS integration.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="tag">skills</div>
+      <h2>What I Work With</h2>
+      <div class="skill-grid">
+        <div class="skill-group">
+          <h3>web & design</h3>
+          <div class="pill-row">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">Responsive Design</span>
+            <span class="pill">SEO</span>
+            <span class="pill">Email Development</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>tools & platforms</h3>
+          <div class="pill-row">
+            <span class="pill">WordPress</span>
+            <span class="pill">HubSpot</span>
+            <span class="pill">Adobe Suite</span>
+            <span class="pill">Git / GitHub</span>
+            <span class="pill">Excel</span>
+            <span class="pill">CMS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>backend & languages</h3>
+          <div class="pill-row">
+            <span class="pill">PHP</span>
+            <span class="pill">SQL</span>
+            <span class="pill">Java</span>
+            <span class="pill">C</span>
+            <span class="pill">Python</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>specialized</h3>
+          <div class="pill-row">
+            <span class="pill">OpenCV</span>
+            <span class="pill">Digital Marketing</span>
+            <span class="pill">Email Marketing</span>
+            <span class="pill">Data Processing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="project">
+      <div class="tag">project</div>
+      <h2>Featured Work</h2>
+      <div class="project-card">
+        <h3>AI Deep Vision for Crowd Monitoring</h3>
+        <p>An AI-powered system that detects people and estimates crowd density from live and recorded video. Uses frame-by-frame object detection to count and track individuals in real time, flagging overcrowded zones automatically — built for public safety and crowd management at large gatherings.</p>
+        <div class="stack-row">
+          <span>Python</span>
+          <span>OpenCV</span>
+          <span>Deep Learning</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="tag">education</div>
+      <h2>Academic Background</h2>
+      <div class="edu-row">
+        <div>
+          <div class="edu-name">B.Tech, Information Technology</div>
+          <div class="edu-org">Tirumala Engineering College</div>
+        </div>
+        <div class="edu-meta">Jan 2022 — Present<br>GPA 70%</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-name">Intermediate (MPC)</div>
+          <div class="edu-org">Sri Chaitanya Junior College</div>
+        </div>
+        <div class="edu-meta">Jan 2020 — Jan 2022<br>GPA 77%</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-name">SSC</div>
+          <div class="edu-org">St. Joseph's High School</div>
+        </div>
+        <div class="edu-meta">Jan 2019 — Jan 2020<br>GPA 95%</div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="tag">certifications</div>
+      <h2>Certifications</h2>
+      <ul class="cert-list">
+        <li>HackerRank Certification — Java (Problem Solving)</li>
+        <li>Certification in English Typewriting</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer>Talari Nirmala — Narasaraopet, Andhra Pradesh, India — talarinirmala4@gmail.com</footer>
+
+<script>
+  // Typing effect for the hero terminal line
+  const phrases = [
+    "optimizing responsive layouts...",
+    "troubleshooting cross-browser issues...",
+    "building computer vision pipelines...",
+    "shipping SEO-driven pages..."
+  ];
+  const target = document.getElementById('typeTarget');
+  let pIndex = 0, cIndex = 0, deleting = false;
+
+  function tick(){
+    const current = phrases[pIndex];
+    if(!deleting){
+      cIndex++;
+      target.textContent = current.slice(0, cIndex);
+      if(cIndex === current.length){
+        deleting = true;
+        setTimeout(tick, 1400);
+        return;
+      }
+    } else {
+      cIndex--;
+      target.textContent = current.slice(0, cIndex);
+      if(cIndex === 0){
+        deleting = false;
+        pIndex = (pIndex + 1) % phrases.length;
+      }
+    }
+    setTimeout(tick, deleting ? 30 : 55);
+  }
+  tick();
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('main section');
+  const navLinks = document.querySelectorAll('#nav a');
+  const hero = document.getElementById('hero');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector('#nav a[href="#' + entry.target.id + '"]');
+        if(link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => observer.observe(s));
+  observer.observe(hero);
+</script>
+
+</body>
+</html>
